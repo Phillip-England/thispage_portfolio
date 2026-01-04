@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>{{ slot "title" }}</title>
+</head>
+<body class="bg-neutral-950 text-neutral-300 font-sans antialiased min-h-screen relative">
+  <div class="max-w-4xl mx-auto py-20 px-6">
+    {{ include "./components/navigation.html" }}
+    
+    <main class="mt-12 min-h-[50vh] relative">
+        {{ slot "main" }}
+    </main>
+  </div>
+</body>
+</html>
