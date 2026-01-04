@@ -1,0 +1,8 @@
+# thispage credentials (sensitive - do not commit)
+.thispage/
+
+# SQLite database
+data.db
+
+# Build output
+live/
