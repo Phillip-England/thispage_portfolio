@@ -1,344 +1,286 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konf | Configuration Management CLI</title>
-    <style>
-        :root {
-            --bg-primary: #1a1b26;
-            --bg-secondary: #24283b;
-            --text-primary: #c0caf5;
-            --text-secondary: #9aa5ce;
-            --accent: #7aa2f7;
-            --accent-hover: #5d87e5;
-            --success: #9ece6a;
-            --warning: #e0af68;
-            --code-bg: #16161e;
-            --border: #414868;
-            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: var(--font-main);
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        a:hover {
-            color: var(--accent-hover);
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        /* Header */
-        header {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 2rem;
-            margin-bottom: 3rem;
-        }
-        h1 {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-        }
-        .badges {
-            margin-top: 1rem;
-            display: flex;
-            gap: 10px;
-        }
-        .badge {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-family: var(--font-mono);
-        }
-        /* Sections */
-        section {
-            margin-bottom: 3rem;
-        }
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border);
-            color: #fff;
-        }
-        h3 {
-            font-size: 1.3rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-        p {
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
-        }
-        /* Code Blocks */
-        pre {
-            background-color: var(--code-bg);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 1rem;
-            overflow-x: auto;
-            margin-bottom: 1.5rem;
-        }
-        code {
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            color: var(--success);
-        }
-        p code {
-            background-color: var(--bg-secondary);
-            padding: 2px 5px;
-            border-radius: 3px;
-            color: var(--text-primary);
-        }
-        /* Command Tables */
-        .cmd-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1.5rem;
-            background: var(--bg-secondary);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .cmd-table th, .cmd-table td {
-            text-align: left;
-            padding: 12px 15px;
-            border-bottom: 1px solid var(--border);
-        }
-        .cmd-table th {
-            background-color: #1f2335;
-            color: var(--accent);
-            font-weight: 600;
-        }
-        .cmd-table tr:last-child td {
-            border-bottom: none;
-        }
-        .flag {
-            color: var(--warning);
-            font-family: var(--font-mono);
-        }
-        /* File Structure Tree */
-        .tree {
-            font-family: var(--font-mono);
-            color: var(--text-secondary);
-            background: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: 6px;
-        }
-        .tree-item {
-            padding: 2px 0;
-        }
-        .tree-dir {
-            color: var(--accent);
-            font-weight: bold;
-        }
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <header>
-        <h1>konf</h1>
-        <p class="subtitle">A configuration management CLI intended to remove the need to memorize config syntax.</p>
-        <div class="badges">
-            <span class="badge">Go 1.25.5</span>
-            <span class="badge">License: MIT (Implied)</span>
-            <span class="badge">Author: Phillip England</span>
+{{ layout "./layouts/guest_layout.html" }}
+
+{{ block "title" }}Konf - Configuration Management CLI{{ endblock }}
+
+{{ block "main" }}
+<div class="flex flex-col lg:flex-row gap-8 -mx-6 lg:-mx-0">
+    <!-- Sidebar Navigation -->
+    <aside class="hidden lg:block lg:w-64 flex-shrink-0">
+        <div class="sticky top-8">
+            <div class="mb-6">
+                <a href="/" class="text-sm text-neutral-500 hover:text-white transition-colors flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    Back to Portfolio
+                </a>
+            </div>
+            <h2 class="text-xl font-bold text-white mb-6 bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent">konf</h2>
+
+            <nav class="space-y-6">
+                <div>
+                    <h3 class="text-xs uppercase tracking-wider text-neutral-500 font-semibold mb-3">Getting Started</h3>
+                    <div class="space-y-2">
+                        <a href="#overview" class="block text-neutral-400 hover:text-blue-400 hover:pl-2 transition-all text-sm">Overview</a>
+                        <a href="#installation" class="block text-neutral-400 hover:text-blue-400 hover:pl-2 transition-all text-sm">Installation</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xs uppercase tracking-wider text-neutral-500 font-semibold mb-3">Usage</h3>
+                    <div class="space-y-2">
+                        <a href="#initialization" class="block text-neutral-400 hover:text-blue-400 hover:pl-2 transition-all text-sm">Initialization</a>
+                        <a href="#static-site" class="block text-neutral-400 hover:text-blue-400 hover:pl-2 transition-all text-sm">Static Site</a>
+                        <a href="#reverse-proxy" class="block text-neutral-400 hover:text-blue-400 hover:pl-2 transition-all text-sm">Reverse Proxy</a>
+                        <a href="#rate-limiting" class="block text-neutral-400 hover:text-blue-400 hover:pl-2 transition-all text-sm">Rate Limiting</a>
+                        <a href="#upload-limits" class="block text-neutral-400 hover:text-blue-400 hover:pl-2 transition-all text-sm">Upload Limits</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xs uppercase tracking-wider text-neutral-500 font-semibold mb-3">Reference</h3>
+                    <div class="space-y-2">
+                        <a href="#structure" class="block text-neutral-400 hover:text-blue-400 hover:pl-2 transition-all text-sm">Project Structure</a>
+                    </div>
+                </div>
+            </nav>
         </div>
-    </header>
-    <main>
-        <section id="overview">
-            <h2>Overview</h2>
-            <p><strong>Konf</strong> is a Command Line Interface tool designed to generate and manage configuration files for various systems. Currently, it features robust support for <strong>Caddy</strong> web server configurations, allowing developers to generate `Caddyfile` blocks for static sites, reverse proxies, rate limiting, and upload limits without manually editing configuration files.</p>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 min-w-0 px-6 lg:px-0">
+        <!-- Mobile Header -->
+        <div class="lg:hidden mb-8">
+            <a href="/" class="text-sm text-neutral-500 hover:text-white transition-colors flex items-center gap-2 mb-4">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Portfolio
+            </a>
+        </div>
+
+        <!-- Overview -->
+        <section id="overview" class="mb-16 scroll-mt-8">
+            <div class="mb-6 pb-4 border-b border-neutral-800">
+                <h1 class="text-3xl font-bold text-blue-400 mb-2">konf</h1>
+                <p class="text-neutral-400">A configuration management CLI intended to remove the need to memorize config syntax.</p>
+                <div class="flex gap-2 mt-4">
+                    <span class="bg-neutral-900 border border-neutral-800 px-2 py-1 rounded text-xs font-mono text-neutral-400">Go 1.25.5</span>
+                    <span class="bg-neutral-900 border border-neutral-800 px-2 py-1 rounded text-xs font-mono text-neutral-400">MIT License</span>
+                    <span class="bg-neutral-900 border border-neutral-800 px-2 py-1 rounded text-xs font-mono text-neutral-400">Phillip England</span>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-white mb-4">Overview</h2>
+            <p class="text-neutral-300 mb-4"><strong class="text-white">Konf</strong> is a Command Line Interface tool designed to generate and manage configuration files for various systems. Currently, it features robust support for <strong class="text-white">Caddy</strong> web server configurations, allowing developers to generate Caddyfile blocks for static sites, reverse proxies, rate limiting, and upload limits without manually editing configuration files.</p>
         </section>
-        <section id="installation">
-            <h2>Installation</h2>
-            <p>Ensure you have Go installed on your system. You can install `konf` directly from the source:</p>
-            <pre><code>go install github.com/phillip-england/konf@latest</code></pre>
-            <p>Or clone the repository and build locally:</p>
-            <pre><code>git clone https://github.com/Phillip-England/konf.git
+
+        <!-- Installation -->
+        <section id="installation" class="mb-16 scroll-mt-8">
+            <h2 class="text-3xl font-bold text-white mb-6 pb-4 border-b border-neutral-800">Installation</h2>
+            <p class="text-neutral-300 mb-4">Ensure you have Go installed on your system. You can install <code class="bg-neutral-800 text-blue-400 px-2 py-1 rounded text-sm font-mono">konf</code> directly from the source:</p>
+
+            <pre class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 overflow-x-auto mb-4"><code class="text-sm font-mono text-blue-400">go install github.com/phillip-england/konf@latest</code></pre>
+
+            <p class="text-neutral-400 mb-4">Or clone the repository and build locally:</p>
+
+            <pre class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 overflow-x-auto"><code class="text-sm font-mono text-neutral-300">git clone https://github.com/Phillip-England/konf.git
 cd konf
 go build -o konf main.go</code></pre>
         </section>
-        <section id="usage">
-            <h2>Usage</h2>
-            <p>The general syntax is <code>konf [command] [subcommand] [flags]</code>.</p>
-            <h3>Initialization</h3>
-            <p>Initialize a new `Caddyfile` in the current directory.</p>
-            <pre><code>konf caddy init</code></pre>
-            <table class="cmd-table">
-                <thead>
-                    <tr>
-                        <th>Flag</th>
-                        <th>Description</th>
-                        <th>Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="flag">-f, --force</td>
-                        <td>Overwrite existing Caddyfile if it exists</td>
-                        <td>false</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h3>Adding a Static Site</h3>
-            <p>Add a basic file server block for a specific host.</p>
-            <pre><code>konf caddy add site example.com --root ./public</code></pre>
-            <table class="cmd-table">
-                <thead>
-                    <tr>
-                        <th>Argument/Flag</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="flag">&lt;host&gt;</td>
-                        <td>The domain name (e.g., localhost, example.com)</td>
-                    </tr>
-                    <tr>
-                        <td class="flag">--root</td>
-                        <td>(Optional) The root path for the file server</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h3>Adding a Reverse Proxy</h3>
-            <p>Forward traffic from a host to an upstream service.</p>
-            <pre><code>konf caddy add proxy api.example.com localhost:8080</code></pre>
-            <table class="cmd-table">
-                <thead>
-                    <tr>
-                        <th>Argument</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="flag">&lt;host&gt;</td>
-                        <td>The domain name</td>
-                    </tr>
-                    <tr>
-                        <td class="flag">&lt;upstream&gt;</td>
-                        <td>The upstream destination (e.g., localhost:3000)</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h3>Adding Rate Limiting</h3>
-            <p>Apply rate limits to a host. <em>Note: This requires a Caddy build with the rate-limit plugin.</em></p>
-            <pre><code>konf caddy add rate-limit api.example.com --events 100 --window 1m</code></pre>
-            <table class="cmd-table">
-                <thead>
-                    <tr>
-                        <th>Flag</th>
-                        <th>Description</th>
-                        <th>Default</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="flag">--events</td>
-                        <td>Events allowed per window</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td class="flag">--window</td>
-                        <td>Window duration (e.g., 1m, 10s)</td>
-                        <td>1m</td>
-                    </tr>
-                    <tr>
-                        <td class="flag">--burst</td>
-                        <td>Burst allowance</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td class="flag">--zone</td>
-                        <td>Rate limit zone name</td>
-                        <td>default</td>
-                    </tr>
-                    <tr>
-                        <td class="flag">--match</td>
-                        <td>Optional path matcher (e.g., /api/*)</td>
-                        <td>(empty)</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h3>Adding Upload Limits</h3>
-            <p>Restrict the maximum request body size (file uploads).</p>
-            <pre><code>konf caddy add upload-limit files.example.com --max 10MB</code></pre>
-            <table class="cmd-table">
-                <thead>
-                    <tr>
-                        <th>Flag</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="flag">--max</td>
-                        <td>Max upload size (Required, e.g., 10MB)</td>
-                    </tr>
-                    <tr>
-                        <td class="flag">--match</td>
-                        <td>Optional path matcher (e.g., /upload/*)</td>
-                    </tr>
-                </tbody>
-            </table>
+
+        <!-- Usage -->
+        <section id="initialization" class="mb-16 scroll-mt-8">
+            <h2 class="text-3xl font-bold text-white mb-6 pb-4 border-b border-neutral-800">Usage</h2>
+            <p class="text-neutral-300 mb-6">The general syntax is <code class="bg-neutral-800 text-blue-400 px-2 py-1 rounded text-sm font-mono">konf [command] [subcommand] [flags]</code>.</p>
+
+            <h3 class="text-xl font-semibold text-white mb-4">Initialization</h3>
+            <p class="text-neutral-400 mb-4">Initialize a new Caddyfile in the current directory.</p>
+
+            <pre class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 overflow-x-auto mb-4"><code class="text-sm font-mono text-blue-400">konf caddy init</code></pre>
+
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse mb-4">
+                    <thead>
+                        <tr class="bg-neutral-900">
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Flag</th>
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Description</th>
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Default</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr>
+                            <td class="p-4"><code class="text-yellow-400 font-mono">-f, --force</code></td>
+                            <td class="p-4 text-neutral-400">Overwrite existing Caddyfile if it exists</td>
+                            <td class="p-4 text-neutral-400">false</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
-        <section id="structure">
-            <h2>Project Structure</h2>
-            <div class="tree">
-                <div class="tree-item"><span class="tree-dir">konf/</span></div>
-                <div class="tree-item">├── <span class="tree-dir">cmd/</span> (CLI Command Definitions)</div>
-                <div class="tree-item">│   ├── caddy.go</div>
-                <div class="tree-item">│   ├── caddy_add.go</div>
-                <div class="tree-item">│   ├── caddy_add_proxy.go</div>
-                <div class="tree-item">│   ├── caddy_add_rate_limit.go</div>
-                <div class="tree-item">│   ├── caddy_add_site.go</div>
-                <div class="tree-item">│   ├── caddy_add_upload_limit.go</div>
-                <div class="tree-item">│   ├── caddy_init.go</div>
-                <div class="tree-item">│   └── root.go</div>
-                <div class="tree-item">├── <span class="tree-dir">internal/</span> (Core Logic)</div>
-                <div class="tree-item">│   └── <span class="tree-dir">caddy/</span></div>
-                <div class="tree-item">│       ├── manager.go (File I/O & Block Generation)</div>
-                <div class="tree-item">│       └── templates.go</div>
-                <div class="tree-item">├── go.mod</div>
-                <div class="tree-item">└── main.go</div>
+
+        <!-- Static Site -->
+        <section id="static-site" class="mb-16 scroll-mt-8">
+            <h3 class="text-xl font-semibold text-white mb-4">Adding a Static Site</h3>
+            <p class="text-neutral-400 mb-4">Add a basic file server block for a specific host.</p>
+
+            <pre class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 overflow-x-auto mb-4"><code class="text-sm font-mono text-blue-400">konf caddy add site example.com --root ./public</code></pre>
+
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-neutral-900">
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Argument/Flag</th>
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-neutral-800">
+                            <td class="p-4"><code class="text-yellow-400 font-mono">&lt;host&gt;</code></td>
+                            <td class="p-4 text-neutral-400">The domain name (e.g., localhost, example.com)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4"><code class="text-yellow-400 font-mono">--root</code></td>
+                            <td class="p-4 text-neutral-400">(Optional) The root path for the file server</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Reverse Proxy -->
+        <section id="reverse-proxy" class="mb-16 scroll-mt-8">
+            <h3 class="text-xl font-semibold text-white mb-4">Adding a Reverse Proxy</h3>
+            <p class="text-neutral-400 mb-4">Forward traffic from a host to an upstream service.</p>
+
+            <pre class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 overflow-x-auto mb-4"><code class="text-sm font-mono text-blue-400">konf caddy add proxy api.example.com localhost:8080</code></pre>
+
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-neutral-900">
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Argument</th>
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-neutral-800">
+                            <td class="p-4"><code class="text-yellow-400 font-mono">&lt;host&gt;</code></td>
+                            <td class="p-4 text-neutral-400">The domain name</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4"><code class="text-yellow-400 font-mono">&lt;upstream&gt;</code></td>
+                            <td class="p-4 text-neutral-400">The upstream destination (e.g., localhost:3000)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Rate Limiting -->
+        <section id="rate-limiting" class="mb-16 scroll-mt-8">
+            <h3 class="text-xl font-semibold text-white mb-4">Adding Rate Limiting</h3>
+            <p class="text-neutral-400 mb-4">Apply rate limits to a host. <em class="text-neutral-500">Note: This requires a Caddy build with the rate-limit plugin.</em></p>
+
+            <pre class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 overflow-x-auto mb-4"><code class="text-sm font-mono text-blue-400">konf caddy add rate-limit api.example.com --events 100 --window 1m</code></pre>
+
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-neutral-900">
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Flag</th>
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Description</th>
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Default</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-neutral-800">
+                            <td class="p-4"><code class="text-yellow-400 font-mono">--events</code></td>
+                            <td class="p-4 text-neutral-400">Events allowed per window</td>
+                            <td class="p-4 text-neutral-400">100</td>
+                        </tr>
+                        <tr class="border-b border-neutral-800">
+                            <td class="p-4"><code class="text-yellow-400 font-mono">--window</code></td>
+                            <td class="p-4 text-neutral-400">Window duration (e.g., 1m, 10s)</td>
+                            <td class="p-4 text-neutral-400">1m</td>
+                        </tr>
+                        <tr class="border-b border-neutral-800">
+                            <td class="p-4"><code class="text-yellow-400 font-mono">--burst</code></td>
+                            <td class="p-4 text-neutral-400">Burst allowance</td>
+                            <td class="p-4 text-neutral-400">0</td>
+                        </tr>
+                        <tr class="border-b border-neutral-800">
+                            <td class="p-4"><code class="text-yellow-400 font-mono">--zone</code></td>
+                            <td class="p-4 text-neutral-400">Rate limit zone name</td>
+                            <td class="p-4 text-neutral-400">default</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4"><code class="text-yellow-400 font-mono">--match</code></td>
+                            <td class="p-4 text-neutral-400">Optional path matcher (e.g., /api/*)</td>
+                            <td class="p-4 text-neutral-400">(empty)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Upload Limits -->
+        <section id="upload-limits" class="mb-16 scroll-mt-8">
+            <h3 class="text-xl font-semibold text-white mb-4">Adding Upload Limits</h3>
+            <p class="text-neutral-400 mb-4">Restrict the maximum request body size (file uploads).</p>
+
+            <pre class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 overflow-x-auto mb-4"><code class="text-sm font-mono text-blue-400">konf caddy add upload-limit files.example.com --max 10MB</code></pre>
+
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-neutral-900">
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Flag</th>
+                            <th class="text-left p-4 text-white font-semibold border-b border-neutral-800">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-neutral-800">
+                            <td class="p-4"><code class="text-yellow-400 font-mono">--max</code></td>
+                            <td class="p-4 text-neutral-400">Max upload size (Required, e.g., 10MB)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4"><code class="text-yellow-400 font-mono">--match</code></td>
+                            <td class="p-4 text-neutral-400">Optional path matcher (e.g., /upload/*)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Project Structure -->
+        <section id="structure" class="mb-16 scroll-mt-8">
+            <h2 class="text-3xl font-bold text-white mb-6 pb-4 border-b border-neutral-800">Project Structure</h2>
+
+            <pre class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 overflow-x-auto"><code class="text-sm font-mono"><span class="text-blue-400 font-bold">konf/</span>
+├── <span class="text-blue-400 font-bold">cmd/</span> <span class="text-neutral-500">(CLI Command Definitions)</span>
+│   ├── caddy.go
+│   ├── caddy_add.go
+│   ├── caddy_add_proxy.go
+│   ├── caddy_add_rate_limit.go
+│   ├── caddy_add_site.go
+│   ├── caddy_add_upload_limit.go
+│   ├── caddy_init.go
+│   └── root.go
+├── <span class="text-blue-400 font-bold">internal/</span> <span class="text-neutral-500">(Core Logic)</span>
+│   └── <span class="text-blue-400 font-bold">caddy/</span>
+│       ├── manager.go <span class="text-neutral-500">(File I/O & Block Generation)</span>
+│       └── templates.go
+├── go.mod
+└── main.go</code></pre>
+        </section>
+
+        <!-- Footer -->
+        <section class="mb-16">
+            <div class="border-t border-neutral-800 pt-8 text-center">
+                <p class="text-neutral-500 text-sm mb-2">Generated based on repository state as of January 2026.</p>
+                <a href="https://github.com/Phillip-England/konf" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors text-sm">View on GitHub</a>
             </div>
         </section>
     </main>
-    <footer>
-        <p>Generated based on repository state as of January 2026.</p>
-        <p><a href="https://github.com/Phillip-England/konf">View on GitHub</a></p>
-    </footer>
 </div>
-</body>
-</html>
+{{ endblock }}
+{{ endlayout }}
